@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include rest_migrate *.css
+recursive-include rest_migrate *.csv
+recursive-include rest_migrate *.html
+recursive-include rest_migrate *.ico
+recursive-include rest_migrate *.js
+recursive-include rest_migrate *.json
+recursive-include rest_migrate *.md
+recursive-include rest_migrate *.png
+recursive-include rest_migrate *.py
+recursive-include rest_migrate *.svg
+recursive-include rest_migrate *.txt
+recursive-exclude rest_migrate *.pyc
