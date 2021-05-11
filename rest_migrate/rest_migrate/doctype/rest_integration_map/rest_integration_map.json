@@ -1,0 +1,187 @@
+{
+ "actions": [
+  {
+   "action": "rest_migrate.rest_migrate.doctype.rest_integration_map.rest_integration_map.import_data",
+   "action_type": "Server Action",
+   "label": "API Import"
+  }
+ ],
+ "creation": "2021-05-01 01:36:04.262155",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "segment_name",
+  "is_group",
+  "col_break_1",
+  "parent_segment",
+  "keep_existing",
+  "lft",
+  "rgt",
+  "old_parent",
+  "sec_break_1",
+  "target_dt",
+  "data_field",
+  "col_break_2",
+  "target_df",
+  "convert_method",
+  "sec_break_2",
+  "params"
+ ],
+ "fields": [
+  {
+   "description": "URL segment string (no leading or trailing slashes) or record fieldname or key.fieldname for child records",
+   "fieldname": "segment_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Segment Name",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "Part of the URL or a data field",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is URL Path Segment"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "parent_segment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Parent Segment",
+   "mandatory_depends_on": "eval:!doc.is_group",
+   "options": "REST Integration Map"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Old Parent",
+   "options": "REST Integration Map",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.parent_segment",
+   "fieldname": "sec_break_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:!doc.is_group",
+   "description": "Database destination DocType",
+   "fieldname": "target_dt",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target DocType",
+   "options": "DocType"
+  },
+  {
+   "depends_on": "eval:!doc.is_group",
+   "description": "Examples: .lower, int or frappe.utils.get_datetime",
+   "fieldname": "convert_method",
+   "fieldtype": "Data",
+   "label": "Conversion Method"
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Reference the source data field that is substituted for the URL segment or data field. Can be used to import data into DocFields to satisfy mandatory requirements",
+   "fieldname": "data_field",
+   "fieldtype": "Link",
+   "label": "Field Reference",
+   "options": "REST Integration Map"
+  },
+  {
+   "depends_on": "eval:!doc.is_group",
+   "description": "Database destination Field",
+   "fieldname": "target_df",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target DocField",
+   "mandatory_depends_on": "eval:doc.target_dt",
+   "options": "DocField",
+   "read_only_depends_on": "eval:!doc.target_dt"
+  },
+  {
+   "default": "0",
+   "description": "Set on the root node only, do not overwrite existing data",
+   "fieldname": "keep_existing",
+   "fieldtype": "Check",
+   "label": "Keep Existing",
+   "read_only_depends_on": "eval:doc.parent_segment"
+  },
+  {
+   "depends_on": "eval:doc.is_group",
+   "fieldname": "sec_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "These parameters will be merged together with other parameters on the same url tree branch when making a request",
+   "fieldname": "params",
+   "fieldtype": "Table",
+   "label": "Extra Request Parameters",
+   "options": "REST Integration Parameter"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2021-05-11 08:24:50.809231",
+ "modified_by": "Administrator",
+ "module": "REST Migrate",
+ "name": "REST Integration Map",
+ "nsm_parent_field": "parent_segment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "parent_segment",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "segment_name",
+ "track_changes": 1
+}
